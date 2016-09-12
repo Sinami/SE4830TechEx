@@ -4,7 +4,7 @@ from django.http import HttpResponse
 import logging
 logger = logging.getLogger(__name__)
 
-from .forms import GroupInfoForm, GroupInfoDeleteForm
+from .forms import GroupInfoForm, GroupInfoDeleteForm, GroupInfoFindForm
 from .models import GroupInfo
 
 def index(request):
