@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import GroupInfoForm
 from .models import GroupInfo
@@ -8,9 +8,13 @@ def index(request):
 	#context = {'group': group}
 	#return render(request, 'groupTracker/index.html', context)
 	if request.method == "POST":
-
-	form = GroupInfoForm()
-	return render(request, 'groupTracker/index.html', {'form':form})	
+		form = GroupInfoForm(request.POST)
+		if form.is_valid():
+			post = form.save()
+			return redirect('groupTracker/index.html')
+		else:
+			form = GroupInfoForm()
+		return render(request, 'groupTracker/index.html', {'form':form})
 
 
 def details(request,user_id):
