@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404 
 from django.http import HttpResponse
+
 from .forms import GroupInfoForm
 from .models import GroupInfo
 
@@ -11,19 +12,20 @@ def index(request):
 		form = GroupInfoForm(request.POST)
 		if form.is_valid():
 			post = form.save()
-			return redirect('groupTracker/index.html')
-		else:
-			form = GroupInfoForm()
-		return render(request, 'groupTracker/index.html', {'form':form})
+			return redirect('groupTracker:submit',pk=post.pk)
+	else:
+		form = GroupInfoForm()
+	return render(request, 'groupTracker/index.html', {'form':form})
 
 
 def details(request,user_id):
 	group = get_object_or_404(GroupInfo,id=user_id)
 	return render(request, 'groupTracker/detail.html', {'group': group})
 
-def showAll(request,id):
-	return HttpResponse("Show %s." % id)
+def showAll(request):
+	return HttpResponse("Show .")
 
-def submit(request):
+def submit(request,pk):
 #	form = GroupInfoForm()
-	return HttpResponse("Work in Progress- SUbmit")	
+	post = get_object_or_404(GroupInfo, pk = pk)
+	return render(request, 'groupTracker/details.html', {'post': post})	

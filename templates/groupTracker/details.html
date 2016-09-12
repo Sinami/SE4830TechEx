@@ -1,1 +1,24 @@
-{{ group }}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'groupTracker/styles.css' %}" />
+
+<div class="post">
+<h4>Successfully Added.</h4>
+
+<table style="border: 1px solid black;">
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Group Name</th>
+    <th>Class Name</th>
+  </tr>
+  <tr>
+    <td>{{ post.first_name }}</td>
+    <td>{{ post.last_name }}</td>
+    <td>{{ post.group_name }}</td>
+    <td>{{ post.class_name }}</td>
+  </tr>
+</table>
+<form action={% url 'groupTracker:index' %}>
+	<input type="submit" value="Back" />
+</form>
+</div>
