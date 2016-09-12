@@ -1,0 +1,11 @@
+{% if group %}
+	<ul>
+		<p>IT WOrks!</p>
+	{% for item in group %}
+	<li>{{ item }}</li>
+
+	{% endfor %}
+	</ul>
+{% else %}
+	<p>No data.</p>
+{% endif %}

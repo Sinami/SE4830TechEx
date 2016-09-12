@@ -1,15 +1,10 @@
 from django.db import models
 
-class GroupClass(models.Model):
-	class_name = models.CharField(max_length=200)
-	
-	def __str__(self):
-		return self.class_name
-
-
-class Group(models.Model):
-	group_class = models.ForeignKey(GroupClass, on_delete=models.CASCADE)
-	group_name = models.CharField(max_length=200)
+class GroupInfo(models.Model):
+	first_name = models.CharField(max_length=50)
+	last_name = models.CharField(max_length=50)
+	group_name = models.CharField(max_length=100)
+	class_name = models.CharField(max_length=100)
 
 	def __str__(self):
-		return self.group_name
+		return (self.first_name + " " + self.last_name + " | " + self.group_name + " | " + self.class_name)
