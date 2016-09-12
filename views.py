@@ -38,6 +38,5 @@ def delete(request):
 	if request.method == "POST":
 		searchStr= GroupInfoDeleteForm(request.POST)
 		if searchStr.is_valid():
-			group = GroupInfo.objects.filter(last_name=searchStr)
-			group.delete()
+			GroupInfo.objects.filter(last_name=searchStr).delete()
 	return render(request, 'groupTracker/delete.html')
