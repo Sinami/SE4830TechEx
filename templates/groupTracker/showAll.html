@@ -1,4 +1,10 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'groupTracker/styles.css' %}" />
+
 {% if groups %}
+<form action={% url 'groupTracker:index' %}>
+        <input type="submit" value="Back" />
+</form>
     <h4>Current Groups:</h4>
     <table>
   <tr>
@@ -16,9 +22,6 @@
   </tr>
 	{% endfor %}
     </table>
-<form action={% url 'groupTracker:index' %}>
-	<input type="submit" value="Back" />
-</form>
 {% else %}
 	<p>No data.</p>
 {% endif %}

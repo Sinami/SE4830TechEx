@@ -23,7 +23,8 @@ def details(request,user_id):
 	return render(request, 'groupTracker/detail.html', {'group': group})
 
 def showAll(request):
-	groups = get_object_or_404(GroupInfo, order_by('id'), pk=1)
+	#groups = get_object_or_404(GroupInfo, pk=1)
+	groups = GroupInfo.objects.order_by('id')
 	context = {'groups':groups}
 	return render(request, 'groupTracker/showAll.html', context)
 
