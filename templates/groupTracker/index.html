@@ -2,11 +2,11 @@
 
 <form method="POST" class="post-form">{% csrf_token %}
 	{{ form.as_p }}
-	<button type="submit" class="save btn btn-default">Submit</button>
+	<button type="submit" name="submit" class="save btn btn-default">Submit</button>
 </form>
-<form method="POST" action={% url 'groupTracker:delete' %}>
+<form method="POST">{% csrf_token %}
 	{{ deleteform.as_p }}
-	<input type="submit" value="Delete Record"/>
+	<input type="submit" name="delete" value="Delete Record"/>
 </form>
 <form action={% url 'groupTracker:showAll' %}>
     <input type="submit" value="Show All" />

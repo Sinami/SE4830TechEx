@@ -9,10 +9,16 @@ def index(request):
 	#context = {'group': group}
 	#return render(request, 'groupTracker/index.html', context)
 	if request.method == "POST":
-		form = GroupInfoForm(request.POST)
-		if form.is_valid():
-			post = form.save()
-			return redirect('groupTracker:submit',pk=post.pk)
+		if 'submit' in request.POST:
+			form = GroupInfoForm(request.POST)
+			if form.is_valid():
+				post = form.save()
+				return redirect('groupTracker:submit',pk=post.pk)
+		elif 'delete' in request.POST:
+			searchStr = GroupInfoDeleteForm(request.POST)
+			if searchStr.is_valid():
+				GroupInfo.objects.filter(last_name=searchStr).delete()
+				return redirect('groupTracker:delete')
 	else:
 		form = GroupInfoForm()
 		deleteform = GroupInfoDeleteForm()
@@ -35,8 +41,4 @@ def submit(request,pk):
 	return render(request, 'groupTracker/details.html', {'post': post})	
 
 def delete(request):
-	if request.method == "POST":
-		searchStr= GroupInfoDeleteForm(request.POST)
-		if searchStr.is_valid():
-			GroupInfo.objects.filter(last_name=searchStr).delete()
 	return render(request, 'groupTracker/delete.html')
