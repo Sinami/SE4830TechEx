@@ -34,7 +34,8 @@ def index(request):
 	else:
 		form = GroupInfoForm()
 		deleteform = GroupInfoDeleteForm()
-	return render(request, 'groupTracker/index.html', {'form':form, 'deleteform':deleteform})
+		findform = GroupInfoFindForm()
+	return render(request, 'groupTracker/index.html', {'form':form, 'deleteform':deleteform, 'findform':findform,})
 
 
 def details(request,pk):

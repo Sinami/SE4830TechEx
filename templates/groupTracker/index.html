@@ -6,7 +6,7 @@
 </form>
 <h4>Find Record:</h4>
 <form method="POST">{% csrf_token %}
-	{{ searchform.as_p }}
+	{{ findform.as_p }}
 	<input type="submit" name="find" value="Find Record"/>
 </form>
 <h4>Delete Record:</h4>
