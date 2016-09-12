@@ -1,6 +1,6 @@
 {% if group %}
 	<ul>
-		<p>IT WOrks!</p>
+		<p>IT Works!</p>
 	{% for item in group %}
 	<li>{{ item }}</li>
 
@@ -9,3 +9,15 @@
 {% else %}
 	<p>No data.</p>
 {% endif %}
+<form action="{% url 'groupTracker:submit' group.id %}" method="post">
+{% csrf_token %}
+	First Name:<br />
+	<input type="text" name="first_name"><br />
+	Last Name:<br />
+	<input type="text" name="last_name"><br />
+	Group Name:<br />
+	<input type="text" name="group_name"><br />
+	Class Name:<br />
+	<input type="text" name="class_name"><br />
+	<input type="submit" value="Submit" />
+</form>
