@@ -11,4 +11,10 @@ class GroupInfoDeleteForm(forms.ModelForm):
 
 	class Meta:
 		model = GroupInfo
-		fields = ('last_name',)
+		fields = ('last_name','group_name',)
+
+class GroupInfoFindForm(forms.ModelForm):
+
+	class Meta:
+		model = GroupInfo
+		fields = ('class_name',)

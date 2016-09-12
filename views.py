@@ -22,16 +22,23 @@ def index(request):
 			if searchStr.is_valid():
 				#logger.error(searchStr)
 				l_name = searchStr.cleaned_data['last_name']
-				GroupInfo.objects.filter(last_name=l_name).delete()
+				g_name = searchStr.cleaned_data['group_name']
+				GroupInfo.objects.filter(last_name=l_name).filter(group_name=g_name).delete()
 				return redirect('groupTracker:delete')
+		elif 'find' in request.POST:
+			searchStr = GroupInfoFindForm(request.POST)
+			if searchStr.is_valid():
+				c_name = searchStr.cleaned_data['class_name']
+				records = GroupInfo.objects.filter(class_name=c_name)
+				return redirect('groupTracker:details', pk=records.pk)
 	else:
 		form = GroupInfoForm()
 		deleteform = GroupInfoDeleteForm()
 	return render(request, 'groupTracker/index.html', {'form':form, 'deleteform':deleteform})
 
 
-def details(request,user_id):
-	group = get_object_or_404(GroupInfo,id=user_id)
+def details(request,pk):
+	group = get_object_or_404(GroupInfo,id=pk)
 	return render(request, 'groupTracker/detail.html', {'group': group})
 
 def showAll(request):
