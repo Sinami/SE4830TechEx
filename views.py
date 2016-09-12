@@ -30,7 +30,7 @@ def index(request):
 			if searchStr.is_valid():
 				c_name = searchStr.cleaned_data['class_name']
 				records = GroupInfo.objects.filter(class_name=c_name)
-				return redirect('groupTracker:details', pk=records.pk)
+				return redirect('groupTracker:details', records)
 	else:
 		form = GroupInfoForm()
 		deleteform = GroupInfoDeleteForm()
@@ -38,9 +38,9 @@ def index(request):
 	return render(request, 'groupTracker/index.html', {'form':form, 'deleteform':deleteform, 'findform':findform,})
 
 
-def details(request,pk):
-	group = get_object_or_404(GroupInfo,id=pk)
-	return render(request, 'groupTracker/detail.html', {'group': group})
+def details(request,records):
+	#group = get_object_or_404(GroupInfo,id=pk)
+	return render(request, 'groupTracker/detail.html', {'group': records})
 
 def showAll(request):
 	#groups = get_object_or_404(GroupInfo, pk=1)
