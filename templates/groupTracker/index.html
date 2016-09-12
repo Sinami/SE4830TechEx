@@ -4,6 +4,10 @@
 	{{ form.as_p }}
 	<button type="submit" class="save btn btn-default">Submit</button>
 </form>
+<form method="POST" action={% url 'groupTracker:delete' %}>
+	{{ deleteform.as_p }}
+	<input type="submit" value="Delete Record"/>
+</form>
 <form action={% url 'groupTracker:showAll' %}>
     <input type="submit" value="Show All" />
 </form>

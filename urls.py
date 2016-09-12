@@ -9,5 +9,6 @@ urlpatterns = [
 	#url(r'^(?P<pk>\d+)/submit/$', views.submit, name='submit'),
 	url(r'^submit/(?P<pk>\d+)/$', views.submit, name='submit'),
 	url(r'^showAll/$', views.showAll, name='showAll'),
+	url(r'^delete/$', views.delete, name='delete'),
 	#url(r'^(?P<group_id>[0-9]+)/showAll/$', views.showAll, name='showAll'),
 ]
