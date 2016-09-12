@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404 
 from django.http import HttpResponse
 
+import logging
+logger = logging.getLogger(__name__)
+
 from .forms import GroupInfoForm, GroupInfoDeleteForm
 from .models import GroupInfo
 
@@ -17,7 +20,9 @@ def index(request):
 		elif 'delete' in request.POST:
 			searchStr = GroupInfoDeleteForm(request.POST)
 			if searchStr.is_valid():
-				GroupInfo.objects.filter(last_name=searchStr).delete()
+				#logger.error(searchStr)
+				l_name = searchStr.cleaned_data['last_name']
+				GroupInfo.objects.filter(last_name=l_name).delete()
 				return redirect('groupTracker:delete')
 	else:
 		form = GroupInfoForm()
