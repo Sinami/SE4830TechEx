@@ -23,7 +23,9 @@ def details(request,user_id):
 	return render(request, 'groupTracker/detail.html', {'group': group})
 
 def showAll(request):
-	return HttpResponse("Show .")
+	groups = get_object_or_404(GroupInfo, order_by('id'), pk=1)
+	context = {'groups':groups}
+	return render(request, 'groupTracker/showAll.html', context)
 
 def submit(request,pk):
 #	form = GroupInfoForm()

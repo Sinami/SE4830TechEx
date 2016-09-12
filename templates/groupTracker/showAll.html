@@ -1,0 +1,24 @@
+{% if groups %}
+    <h4>Current Groups:</h4>
+    <table>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Group Name</th>
+    <th>Class Name</th>
+  </tr>
+	{% for item in groups %}
+  <tr>
+    <td>{{ item.first_name }}</td>
+    <td>{{ item.last_name }}</td>
+    <td>{{ item.group_name }}</td>
+    <td>{{ item.class_name }}</td>
+  </tr>
+	{% endfor %}
+    </table>
+<form action={% url 'groupTracker:index' %}>
+	<input type="submit" value="Back" />
+</form>
+{% else %}
+	<p>No data.</p>
+{% endif %}
